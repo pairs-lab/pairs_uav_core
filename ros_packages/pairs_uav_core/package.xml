@@ -39,8 +39,6 @@
   <depend>tmux</depend>
   <depend>tmuxinator</depend>
 
-  <depend>pairs-uav-shell-additions</depend>
-
   <depend>moreutils</depend>
 
   <export>
