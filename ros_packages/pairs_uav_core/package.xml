@@ -33,7 +33,6 @@
   <depend>pairs_uav_status</depend>
   <test_depend>pairs_uav_testing</test_depend>
 
-  <depend>pairs-uav-shell-additions</depend>
   <depend>tmux</depend>
   <depend>tmuxinator</depend>
   <depend>catkin</depend>
