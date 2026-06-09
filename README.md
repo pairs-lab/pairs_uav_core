@@ -5,7 +5,7 @@ CTU-MRS `mrs_uav_core`. It depends on the full PAIRS UAV stack and provides the
 core bring-up launch files (`ros_packages/pairs_uav_core/launch`).
 
 Component repositories are managed via `ros_packages/.gitman.yml`
-(`gitman install`), pointing at `github.com/pairs-lab/pairs_*` on the `ros1` branch.
+(`gitman install`), pointing at `github.com/pairs-lab/pairs_*` on the `ros2` branch.
 
 ## Branches
 - `ros1` — ROS 1 Noetic (catkin)

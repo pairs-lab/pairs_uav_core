@@ -1,23 +1,27 @@
 <?xml version="1.0"?>
-<package format="2">
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
 
   <name>pairs_uav_core</name>
-  <version>1.0.0</version>
-  <description>The PAIRS UAV Core metapackage</description>
+
+  <version>2.0.0</version>
+  <description>PAIRS UAV Core</description>
 
   <maintainer email="canhthanh@vnu.edu.vn">Thanh Nguyen Canh</maintainer>
   <author email="canhthanh@vnu.edu.vn">Thanh Nguyen Canh</author>
 
   <license>BSD 3-Clause</license
 
-  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <depend>cmake_modules</depend>
-  <depend>rospy</depend>
+  <depend>rclcpp</depend>
+  <depend>launch</depend>
+  <depend>launch_ros</depend>
+  <depend>builtin_interfaces</depend>
+  <depend>rclcpp_components</depend>
 
-  <depend version_gte="1.16.666">rosbag</depend>
-  <depend version_gte="0.7.666">tf2_ros</depend>
-  <depend version_gte="0.7.666">tf2</depend>
+  <depend>rmw_zenoh_cpp</depend>
+  <depend>rmw_cyclonedds_cpp</depend>
 
   <depend>pairs_msgs</depend>
   <depend>pairs_lib</depend>
@@ -26,18 +30,21 @@
   <depend>pairs_uav_controllers</depend>
   <depend>pairs_uav_trackers</depend>
   <depend>pairs_uav_state_estimators</depend>
-  <depend>pairs_uav_autostart</depend>
   <depend>pairs_multirotor_simulator</depend>
-  <depend>pairs_rviz_plugins</depend>
+  <depend>pairs_uav_autostart</depend>
   <depend>pairs_uav_trajectory_generation</depend>
   <depend>pairs_uav_status</depend>
   <test_depend>pairs_uav_testing</test_depend>
 
-  <depend>pairs-uav-shell-additions</depend>
   <depend>tmux</depend>
   <depend>tmuxinator</depend>
-  <depend>catkin</depend>
-  <depend>python3-catkin-tools</depend>
+
+  <depend>pairs-uav-shell-additions</depend>
+
   <depend>moreutils</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
 
 </package>

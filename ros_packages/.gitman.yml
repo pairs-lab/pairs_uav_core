@@ -2,7 +2,7 @@ location: .gitman
 sources:
   - repo: https://github.com/pairs-lab/pairs_multirotor_simulator
     name: pairs_multirotor_simulator
-    rev: ros1
+    rev: ros2
     type: git
     params:
     sparse_paths:
@@ -14,7 +14,7 @@ sources:
       - git submodule update --init --recursive
   - repo: https://github.com/pairs-lab/pairs_uav_state_estimators.git
     name: pairs_uav_state_estimators
-    rev: ros1
+    rev: ros2
     type: git
     params:
     sparse_paths:
@@ -26,7 +26,7 @@ sources:
       - git submodule update --init --recursive
   - repo: https://github.com/pairs-lab/pairs_uav_hw_api.git
     name: pairs_uav_hw_api
-    rev: ros1
+    rev: ros2
     type: git
     params:
     sparse_paths:
@@ -38,7 +38,7 @@ sources:
       - git submodule update --init --recursive
   - repo: https://github.com/pairs-lab/pairs_lib.git
     name: pairs_lib
-    rev: ros1
+    rev: ros2
     type: git
     params:
     sparse_paths:
@@ -50,7 +50,7 @@ sources:
       - git submodule update --init --recursive
   - repo: https://github.com/pairs-lab/pairs_msgs.git
     name: pairs_msgs
-    rev: ros1
+    rev: ros2
     type: git
     params:
     sparse_paths:
@@ -60,21 +60,9 @@ sources:
         target: pairs_msgs
     scripts:
       - git submodule update --init --recursive
-  - repo: https://github.com/pairs-lab/pairs_rviz_plugins.git
-    name: pairs_rviz_plugins
-    rev: ros1
-    type: git
-    params:
-    sparse_paths:
-      -
-    links:
-      - source: ''
-        target: pairs_rviz_plugins
-    scripts:
-      - git submodule update --init --recursive
   - repo: https://github.com/pairs-lab/pairs_uav_controllers.git
     name: pairs_uav_controllers
-    rev: ros1
+    rev: ros2
     type: git
     params:
     sparse_paths:
@@ -84,21 +72,9 @@ sources:
         target: pairs_uav_controllers
     scripts:
       - git submodule update --init --recursive
-  - repo: https://github.com/pairs-lab/pairs_uav_autostart.git
-    name: pairs_uav_autostart
-    rev: ros1
-    type: git
-    params:
-    sparse_paths:
-      -
-    links:
-      - source: ''
-        target: pairs_uav_autostart
-    scripts:
-      - git submodule update --init --recursive
   - repo: https://github.com/pairs-lab/pairs_uav_managers.git
     name: pairs_uav_managers
-    rev: ros1
+    rev: ros2
     type: git
     params:
     sparse_paths:
@@ -108,21 +84,9 @@ sources:
         target: pairs_uav_managers
     scripts:
       - git submodule update --init --recursive
-  - repo: https://github.com/pairs-lab/pairs_uav_status.git
-    name: pairs_uav_status
-    rev: ros1
-    type: git
-    params:
-    sparse_paths:
-      -
-    links:
-      - source: ''
-        target: pairs_uav_status
-    scripts:
-      - git submodule update --init --recursive
   - repo: https://github.com/pairs-lab/pairs_uav_trackers.git
     name: pairs_uav_trackers
-    rev: ros1
+    rev: ros2
     type: git
     params:
     sparse_paths:
@@ -132,9 +96,33 @@ sources:
         target: pairs_uav_trackers
     scripts:
       - git submodule update --init --recursive
-  - repo: https://github.com/pairs-lab/pairs_uav_trajectory_generation
+  - repo: https://github.com/pairs-lab/pairs_uav_autostart.git
+    name: pairs_uav_autostart
+    rev: ros2
+    type: git
+    params:
+    sparse_paths:
+      -
+    links:
+      - source: ''
+        target: pairs_uav_autostart
+    scripts:
+      - git submodule update --init --recursive
+  - repo: https://github.com/pairs-lab/pairs_uav_testing.git
+    name: pairs_uav_testing
+    rev: ros2
+    type: git
+    params:
+    sparse_paths:
+      -
+    links:
+      - source: ''
+        target: pairs_uav_testing
+    scripts:
+      - git submodule update --init --recursive
+  - repo: https://github.com/pairs-lab/pairs_uav_trajectory_generation.git
     name: pairs_uav_trajectory_generation
-    rev: ros1
+    rev: ros2
     type: git
     params:
     sparse_paths:
@@ -144,15 +132,15 @@ sources:
         target: pairs_uav_trajectory_generation
     scripts:
       - git submodule update --init --recursive
-  - repo: https://github.com/pairs-lab/pairs_uav_testing
-    name: pairs_uav_testing
-    rev: ros1
+  - repo: https://github.com/pairs-lab/pairs_uav_status.git
+    name: pairs_uav_status
+    rev: ros2
     type: git
     params:
     sparse_paths:
       -
     links:
       - source: ''
-        target: pairs_uav_testing
+        target: pairs_uav_status
     scripts:
       - git submodule update --init --recursive
