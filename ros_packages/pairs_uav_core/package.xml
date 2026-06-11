@@ -34,7 +34,6 @@
   <test_depend>pairs_uav_testing</test_depend>
 
   <depend>tmux</depend>
-  <depend>tmuxinator</depend>
   <depend>catkin</depend>
   <depend>python3-catkin-tools</depend>
   <depend>moreutils</depend>
