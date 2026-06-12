@@ -2,7 +2,7 @@
 
 Top-level **metapackage** for the **PAIRS UAV system** — a multirotor autonomy
 stack for university-lab research, faithfully derived from the open-source
-[CTU-MRS](https://github.com/ctu-mrs) `mrs_uav_core` (BSD-3-Clause).
+[CTU-MRS](https://github.com/ctu-mrs) `pairs_uav_core` (BSD-3-Clause).
 
 Installing this one package pulls in the entire flight stack: estimation,
 control, trajectory generation, hardware API, simulation, and bring-up tooling.
@@ -72,7 +72,7 @@ The core bring-up launch files live in
 
 ## License
 
-BSD-3-Clause. This is a rename-port of the CTU-MRS `mrs_uav_core`; the original
+BSD-3-Clause. This is a rename-port of the CTU-MRS `pairs_uav_core`; the original
 copyright is retained in [LICENSE](LICENSE) alongside the PAIRS copyright.
 
 Maintainer: **Thanh Nguyen Canh** &lt;canhthanh@vnu.edu.vn&gt;
