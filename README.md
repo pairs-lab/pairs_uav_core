@@ -1,30 +1,18 @@
 # pairs_uav_core
 
-Top-level **metapackage** for the **PAIRS UAV system** — a multirotor autonomy
-stack for university-lab research.
+Top-level **metapackage** for the PAIRS UAV system, a multirotor autonomy stack
+for university-lab research. It does not contain any flight code of its own;
+instead it depends on every component of the stack so that installing this one
+package pulls in the whole thing: messages, the shared library, the hardware API,
+the managers, controllers, trackers, state estimators, trajectory generation,
+autostart, status display, RViz plugins, and the lightweight simulator. It also
+ships the core bring-up launch files that wire those managers together for a UAV.
 
-Installing this one package pulls in the entire flight stack: estimation,
-control, trajectory generation, hardware API, simulation, and bring-up tooling.
+## Contents
 
-## Install (ROS 1 Noetic)
-
-```bash
-# 1. add the signed PAIRS apt repository
-curl -fsSL https://thanhnguyencanh.github.io/apt/KEY.gpg \
-  | sudo gpg --dearmor -o /usr/share/keyrings/pairs.gpg
-echo "deb [signed-by=/usr/share/keyrings/pairs.gpg] https://thanhnguyencanh.github.io/apt noetic main" \
-  | sudo tee /etc/apt/sources.list.d/pairs.list
-
-# 2. install the whole stack
-sudo apt update
-sudo apt install ros-noetic-pairs-uav-core
-```
-
-Individual packages can also be installed by name, e.g.
-`sudo apt install ros-noetic-pairs-uav-controllers`.
-
-> For headless / scripted installs, prefix with `DEBIAN_FRONTEND=noninteractive`
-> to skip the `keyboard-configuration` prompt pulled in transitively.
+- `launch/core.launch` — brings up the full per-UAV control stack (control / estimation / transform / constraint / gain / UAV managers, plus trajectory generation and status).
+- `launch/nodelet_manager.launch` — the shared nodelet manager.
+- `launch/rviz.launch` — RViz with the default PAIRS configuration.
 
 ## The stack
 
@@ -36,16 +24,30 @@ submodules in [`ros_packages/.gitman.yml`](ros_packages/.gitman.yml)):
 | [`pairs_msgs`](https://github.com/pairs-lab/pairs_msgs) | ROS messages & services |
 | [`pairs_lib`](https://github.com/pairs-lab/pairs_lib) | shared C++ utility library |
 | [`pairs_uav_hw_api`](https://github.com/pairs-lab/pairs_uav_hw_api) | hardware abstraction / autopilot bridge |
-| [`pairs_uav_managers`](https://github.com/pairs-lab/pairs_uav_managers) | **control / estimation / constraint / gain / uav managers** + the controller/tracker/estimator plugin interfaces |
+| [`pairs_uav_managers`](https://github.com/pairs-lab/pairs_uav_managers) | control / estimation / constraint / gain / uav managers + the controller/tracker/estimator plugin interfaces |
 | [`pairs_uav_controllers`](https://github.com/pairs-lab/pairs_uav_controllers) | SE(3), MPC, failsafe, midair-activation controllers |
 | [`pairs_uav_trackers`](https://github.com/pairs-lab/pairs_uav_trackers) | MPC / landoff / joy / speed reference trackers |
 | [`pairs_uav_state_estimators`](https://github.com/pairs-lab/pairs_uav_state_estimators) | state estimation plugins |
-| [`pairs_uav_trajectory_generation`](https://github.com/pairs-lab/pairs_uav_trajectory_generation) | time-optimal trajectory generation (eth + nlopt) |
+| [`pairs_uav_trajectory_generation`](https://github.com/pairs-lab/pairs_uav_trajectory_generation) | time-optimal trajectory generation |
 | [`pairs_uav_autostart`](https://github.com/pairs-lab/pairs_uav_autostart) | automatic arming / takeoff |
-| [`pairs_uav_status`](https://github.com/pairs-lab/pairs_uav_status) | ncurses terminal status display |
+| [`pairs_uav_status`](https://github.com/pairs-lab/pairs_uav_status) | terminal status display |
 | [`pairs_rviz_plugins`](https://github.com/pairs-lab/pairs_rviz_plugins) | RViz visualization plugins |
 | [`pairs_multirotor_simulator`](https://github.com/pairs-lab/pairs_multirotor_simulator) | lightweight multirotor dynamics simulator |
 | [`pairs_uav_testing`](https://github.com/pairs-lab/pairs_uav_testing) | integration-test harness |
+
+## Branches
+
+- `ros1` — ROS 1 Noetic (catkin)
+- `ros2` — ROS 2 Jazzy (ament_cmake)
+
+## Install (ROS 1 Noetic)
+
+```bash
+sudo apt install ros-noetic-pairs-uav-core
+```
+
+Individual packages can also be installed by name, e.g.
+`sudo apt install ros-noetic-pairs-uav-controllers`.
 
 ## Build from source
 
@@ -60,14 +62,14 @@ cd ~/catkin_ws
 catkin build
 ```
 
-The core bring-up launch files live in
-[`ros_packages/pairs_uav_core/launch`](ros_packages/pairs_uav_core/launch)
-(`core.launch`, `nodelet_manager.launch`, `rviz.launch`).
+## Usage
 
-## Branches
+```bash
+roslaunch pairs_uav_core core.launch
+```
 
-- **`ros1`** — ROS 1 Noetic (catkin) — *apt-installable today*
-- **`ros2`** — ROS 2 Jazzy (ament_cmake)
+`core.launch` expects the `UAV_NAME` and `RUN_TYPE` environment variables to be
+set and is normally invoked from a simulation or real-world bring-up session.
 
 ## License
 
