@@ -1,15 +1,49 @@
-# pairs_uav_core (ROS 2)
+# pairs_uav_core
 
-Top-level **metapackage** for the **PAIRS UAV system** — a multirotor autonomy
-stack for university-lab research.
+Top-level **metapackage** for the PAIRS UAV system, a multirotor autonomy stack
+for university-lab research. This is the **ROS 2 Jazzy** (ament_cmake) line. It
+contains no flight code of its own; it depends on every component of the stack so
+that building it brings in the whole thing, and it ships the core bring-up launch
+file that wires the managers together for a UAV.
 
-This is the **ROS 2 Jazzy** (ament_cmake) line. The signed PAIRS apt repository
-currently publishes the **ROS 1 Noetic** binaries; on ROS 2, build from source
-(below) — Jazzy `.deb` / `bloom-release` packaging is in progress.
+## Contents
 
-## Build from source (ROS 2 Jazzy)
+- `launch/core.launch.py` — brings up the full per-UAV control stack.
 
-Component repositories are pulled with [gitman](https://gitman.readthedocs.io):
+## The stack
+
+This metapackage aggregates the following PAIRS packages (managed as gitman
+submodules in [`ros_packages/.gitman.yml`](ros_packages/.gitman.yml)):
+
+| Package | Role |
+|---|---|
+| [`pairs_msgs`](https://github.com/pairs-lab/pairs_msgs) | ROS messages & services |
+| [`pairs_lib`](https://github.com/pairs-lab/pairs_lib) | shared C++ utility library |
+| [`pairs_uav_hw_api`](https://github.com/pairs-lab/pairs_uav_hw_api) | hardware abstraction / autopilot bridge |
+| [`pairs_uav_managers`](https://github.com/pairs-lab/pairs_uav_managers) | control / estimation / constraint / gain / uav managers + the controller/tracker/estimator plugin interfaces |
+| [`pairs_uav_controllers`](https://github.com/pairs-lab/pairs_uav_controllers) | SE(3), MPC, failsafe, midair-activation controllers |
+| [`pairs_uav_trackers`](https://github.com/pairs-lab/pairs_uav_trackers) | MPC / landoff / joy / speed reference trackers |
+| [`pairs_uav_state_estimators`](https://github.com/pairs-lab/pairs_uav_state_estimators) | state estimation plugins |
+| [`pairs_uav_trajectory_generation`](https://github.com/pairs-lab/pairs_uav_trajectory_generation) | time-optimal trajectory generation |
+| [`pairs_uav_autostart`](https://github.com/pairs-lab/pairs_uav_autostart) | automatic arming / takeoff |
+| [`pairs_uav_status`](https://github.com/pairs-lab/pairs_uav_status) | terminal status display |
+| [`pairs_multirotor_simulator`](https://github.com/pairs-lab/pairs_multirotor_simulator) | lightweight multirotor dynamics simulator |
+| [`pairs_uav_testing`](https://github.com/pairs-lab/pairs_uav_testing) | integration-test harness |
+
+## Branches
+
+- `ros1` — ROS 1 Noetic (catkin)
+- `ros2` — ROS 2 Jazzy (ament_cmake)
+
+## Install (ROS 2 Jazzy)
+
+```bash
+sudo apt install ros-jazzy-pairs-uav-core
+```
+
+## Build from source
+
+The component repositories are pulled with [gitman](https://gitman.readthedocs.io):
 
 ```bash
 # in your colcon workspace src/
@@ -21,36 +55,11 @@ rosdep install --from-paths src --ignore-src -r -y
 colcon build
 ```
 
-The core bring-up is `ros_packages/pairs_uav_core/launch/core.launch.py`.
+## Usage
 
-## The stack
-
-This metapackage aggregates the following PAIRS packages (see
-[`ros_packages/.gitman.yml`](ros_packages/.gitman.yml)):
-
-| Package | Role |
-|---|---|
-| [`pairs_msgs`](https://github.com/pairs-lab/pairs_msgs) | ROS messages & services |
-| [`pairs_lib`](https://github.com/pairs-lab/pairs_lib) | shared C++ utility library |
-| [`pairs_uav_hw_api`](https://github.com/pairs-lab/pairs_uav_hw_api) | hardware abstraction / autopilot bridge |
-| [`pairs_uav_managers`](https://github.com/pairs-lab/pairs_uav_managers) | **control / estimation / constraint / gain / uav managers** + the controller/tracker/estimator plugin interfaces |
-| [`pairs_uav_controllers`](https://github.com/pairs-lab/pairs_uav_controllers) | SE(3), MPC, failsafe, midair-activation controllers |
-| [`pairs_uav_trackers`](https://github.com/pairs-lab/pairs_uav_trackers) | MPC / landoff / joy / speed reference trackers |
-| [`pairs_uav_state_estimators`](https://github.com/pairs-lab/pairs_uav_state_estimators) | state estimation plugins |
-| [`pairs_uav_trajectory_generation`](https://github.com/pairs-lab/pairs_uav_trajectory_generation) | time-optimal trajectory generation (eth + nlopt) |
-| [`pairs_uav_autostart`](https://github.com/pairs-lab/pairs_uav_autostart) | automatic arming / takeoff |
-| [`pairs_uav_status`](https://github.com/pairs-lab/pairs_uav_status) | ncurses terminal status display |
-| [`pairs_rviz_plugins`](https://github.com/pairs-lab/pairs_rviz_plugins) | RViz visualization plugins |
-| [`pairs_multirotor_simulator`](https://github.com/pairs-lab/pairs_multirotor_simulator) | lightweight multirotor dynamics simulator |
-| [`pairs_uav_testing`](https://github.com/pairs-lab/pairs_uav_testing) | integration-test harness |
-
-> **Note (MPC):** on ROS 2 the MPC controller/tracker also depend on a
-> `pairs_mpc_solvers` package (the prebuilt MPC solver), which is not yet ported.
-
-## Branches
-
-- **`ros1`** — ROS 1 Noetic (catkin) — apt-installable via `ros-noetic-pairs-uav-core`
-- **`ros2`** — ROS 2 Jazzy (ament_cmake) — *this branch*
+```bash
+ros2 launch pairs_uav_core core.launch.py
+```
 
 ## License
 
