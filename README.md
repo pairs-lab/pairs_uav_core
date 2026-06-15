@@ -1,8 +1,7 @@
 # pairs_uav_core (ROS 2)
 
 Top-level **metapackage** for the **PAIRS UAV system** — a multirotor autonomy
-stack for university-lab research, faithfully derived from the open-source
-[CTU-MRS](https://github.com/ctu-mrs) `pairs_uav_core` (BSD-3-Clause).
+stack for university-lab research.
 
 This is the **ROS 2 Jazzy** (ament_cmake) line. The signed PAIRS apt repository
 currently publishes the **ROS 1 Noetic** binaries; on ROS 2, build from source
