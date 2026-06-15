@@ -2,7 +2,7 @@
 
 Top-level **metapackage** for the **PAIRS UAV system** — a multirotor autonomy
 stack for university-lab research, faithfully derived from the open-source
-[CTU-MRS](https://github.com/ctu-mrs) `mrs_uav_core` (BSD-3-Clause).
+[CTU-MRS](https://github.com/ctu-mrs) `pairs_uav_core` (BSD-3-Clause).
 
 This is the **ROS 2 Jazzy** (ament_cmake) line. The signed PAIRS apt repository
 currently publishes the **ROS 1 Noetic** binaries; on ROS 2, build from source
@@ -55,7 +55,5 @@ This metapackage aggregates the following PAIRS packages (see
 
 ## License
 
-BSD-3-Clause. This is a rename-port of the CTU-MRS `mrs_uav_core`; the original
+BSD-3-Clause. This is a rename-port of the CTU-MRS `pairs_uav_core`; the original
 copyright is retained in [LICENSE](LICENSE) alongside the PAIRS copyright.
-
-Maintainer: **Thanh Nguyen Canh** &lt;canhthanh@vnu.edu.vn&gt;
